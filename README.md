@@ -119,13 +119,43 @@ cd pdf-rag
 
 ---
 
-### Step 6: Install Project Dependencies
+### Step 6: Create a Virtual Environment (Recommended)
 
-Run this command inside the `pdf-rag` folder:
+A virtual environment keeps this project's libraries separate from your other Python projects. This avoids conflicts.
+
+Make sure you are inside the `pdf-rag` folder, then run:
 
 **Mac:**
 ```
-pip3 install -r requirements.txt
+python3 -m venv venv
+source venv/bin/activate
+```
+
+**Windows (Command Prompt):**
+```
+python -m venv venv
+venv\Scripts\activate
+```
+
+**Windows (PowerShell):**
+```
+python -m venv venv
+venv\Scripts\Activate.ps1
+```
+
+After activating, you should see `(venv)` at the beginning of your terminal line. This means the virtual environment is active.
+
+> **Note:** Every time you open a new Terminal/Command Prompt to use this tool, you need to activate the virtual environment again by running the `activate` command above.
+
+---
+
+### Step 7: Install Project Dependencies
+
+Run this command inside the `pdf-rag` folder (with the virtual environment activated):
+
+**Mac:**
+```
+pip install -r requirements.txt
 ```
 
 **Windows:**
@@ -141,15 +171,26 @@ This will download the required Python libraries. It may take a few minutes.
 
 This opens a chat interface in your browser.
 
+> **Remember:** Always activate the virtual environment first before running any commands.
+
 **Mac:**
 ```
 cd pdf-rag
+source venv/bin/activate
 streamlit run src/web_app.py
 ```
 
-**Windows:**
+**Windows (Command Prompt):**
 ```
 cd pdf-rag
+venv\Scripts\activate
+streamlit run src/web_app.py
+```
+
+**Windows (PowerShell):**
+```
+cd pdf-rag
+venv\Scripts\Activate.ps1
 streamlit run src/web_app.py
 ```
 
@@ -164,6 +205,12 @@ Your browser will open automatically with the app. If it doesn't, go to `http://
 ---
 
 ## Using the Command Line
+
+> **Remember:** Always activate the virtual environment first before running any commands.
+>
+> **Mac:** `source venv/bin/activate`
+> **Windows CMD:** `venv\Scripts\activate`
+> **Windows PowerShell:** `venv\Scripts\Activate.ps1`
 
 ### Ingest (load) a document:
 ```
@@ -208,6 +255,31 @@ python -m src.cli clear
 ---
 
 ## Troubleshooting
+
+### "No module named 'streamlit'" or "No module named 'click'" (after install)
+You probably forgot to activate the virtual environment. Run the activate command first:
+
+**Mac:**
+```
+source venv/bin/activate
+```
+
+**Windows (Command Prompt):**
+```
+venv\Scripts\activate
+```
+
+**Windows (PowerShell):**
+```
+venv\Scripts\Activate.ps1
+```
+
+If you want to **leave** the virtual environment when you're done, just type:
+```
+deactivate
+```
+
+---
 
 ### "Cannot connect to Ollama"
 Make sure Ollama is running. Open a Terminal/Command Prompt and run:
